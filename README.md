@@ -16,6 +16,31 @@ Some code
 
 ## Set up 2 - VBA
 ```
-Some code
+Option Explicit
+Private Declare PtrSafe Function GetSystemPowerStatus Lib "Kernal32" (lpSystemPowerStatus as SYSTEM_POWER_STATUS) as LongPtr
+Private Declare PtrSafe Function SetTimer Lib "user32" (ByVal hwnd As LongLong, ByVal nIDEvent as LongLong, ByVal uElapse as LongLong, ByVal lpTimerfunc as LongLong) As LongLong
+Private Declare PtrSafe Function KillTimer Lib "user32"(ByVal hwnd as LongLong, ByVal nIDEvent as LongLong) as LongLong
+
+Private timerID as LongLong
+Dim powered as Boolean
+Dim useOption2 As Boolean
+
+Private Type SYSTEM_POWER_STATUS
+  ACLineStatus as Byte
+  BatteryFlag as Byte
+  BatteryLifePercent as Byte
+  SystemStatusFlag as Byte
+  BatteryLifeTime as Long
+  BatteryFullLifeTime as Long
+End Type
+
+Public Sub DeactivateTimer()
+  Dim lsuccess As LongLong
+  
+  On Error GoTo err_handler
+  
+End Sub
+
+
 ```
 
