@@ -3,7 +3,6 @@ This is a power saving project designed to discharge a laptop once the battery i
 Due to changing jobs and varied permissions I've had to write the code in C#, VBA and ASP.net. The project requires the purchase of a USB relay along with any additional cosmetic or safety hardware such as cable, a socket box and USB adapter.
 
 ## Hardware requirements and wiring
-A picture<br>
 <img src="Relay.jpg" width="200"></img>
 <img src="CompleteModule.jpg" width="200"></img>
 <img src="USB_Union_Fem.jpg" width="200"></img>
