@@ -4,7 +4,7 @@ Due to changing jobs and varied permissions I've had to write the code in C#, VB
 
 ## Hardware requirements and wiring
 A picture<br>
-<img src="A1.png" width="200"></img>
+<img src="relay.jpg" width="200"></img>
 
 ## Software requirements
 The driver for the USB relay is required along with some software to write the code that may include anything from Office, which could utilise Access; Excel; Outlook, or some other IDE like Visual Studio where another language of personal choice could be used.
