@@ -10,12 +10,7 @@ Due to changing jobs and varied permissions I've had to write the code in C#, VB
 ## Software requirements
 The driver for the USB relay is required along with some software to write the code that may include anything from Office, which could utilise Access; Excel; Outlook, or some other IDE like Visual Studio where another language of personal choice could be used.
 
-## Set up 1 - C#
-```
-Some code
-```
-
-## Set up 2 - VBA
+## Set up 1 - VBA
 ```
 Option Explicit
 Private Declare PtrSafe Function GetSystemPowerStatus Lib "Kernal32" (lpSystemPowerStatus as SYSTEM_POWER_STATUS) as LongPtr
