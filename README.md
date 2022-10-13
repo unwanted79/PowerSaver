@@ -160,5 +160,7 @@ response.write(power)
 ```
 
 ## Stage 4 - Setup the relay
+Right click the start menu on your home PC and select Device Manager<br>
+Expand the Ports (COM &amp; LPT) node
 
 
