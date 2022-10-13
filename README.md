@@ -432,3 +432,6 @@ Sub StartPowerMonitor_Click()
 End Sub
 
 ```
+You can adjust this code according to your circumstances. So you may be able to omit a massive chunck of the code if your laptop allows you to install drivers. You could just put the battery monitor on a timer and them call the Init_Com sub when the criteria is met and remove the whole need of a database or a web page etc.<br>
+
+Sometimes the relay sticks. It's only happened once for me. In this case just give it a flick or a tap and it should respond.
