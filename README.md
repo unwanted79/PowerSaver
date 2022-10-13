@@ -421,3 +421,13 @@ err_handler:
 End Function
 
 ```
+
+And that's it really. You just need to put the checkCharge() sub in a timer so you could activate it from a button using the example below:
+```
+Sub StartPowerMonitor_Click()
+    Dim interval As Variant
+    interval = Now + TimeValue("00:00:10")
+    Application.OnTime interval, "checkCharge"
+End Sub
+
+```
