@@ -10,7 +10,7 @@ Due to changing jobs and varied permissions I've had to write the code in C#, VB
 ## Software requirements
 The driver for the USB relay is required along with some software to write the code that may include anything from Office, which could utilise Access; Excel; Outlook, or some other IDE like Visual Studio where another language of personal choice could be used.
 
-## Set up 1 - VBA
+## Stage 1 - VBA on your work/company PC
 ```
 'Use Reference Microsoft Internet Controls
 Option Explicit
@@ -117,4 +117,48 @@ End Sub
 
 
 ```
+
+## Stage 2 - Set Up SQL Table
+This assumes you already have an Azure SQL database set up, if not you can download the SQL Server engine and host it locally.<br>
+Set up a simple table to store the data
+
+```
+CREATE TABLE [dbo].[WORK_BATTERY](
+	[Percent] [tinyint] NULL,
+	[Charge] [bit] NULL
+) ON [PRIMARY]
+GO
+
+```
+
+## Stage 3 - ASP (Classic to keep things simple)
+Assuming you have IIS installed on Windows and have enabled it to process ASP pages you can add the following code to the file named Batlog.asp
+
+```
+<% 
+
+Dim power
+power=Request.QueryString("power")
+response.write(power)
+
+    Dim con
+	Set con = Server.CreateObject("ADODB.Connection")
+    With con
+    '   .CursorLocation = adUseClient
+    '    .Mode = adModeRead
+        .ConnectionString = "Driver={ODBC Driver 18 for SQL Server};Server=tcp:[your azure SQL Server].database.windows.net,1433;Database=[Database Name];Uid=[your username];Pwd=[your password];Encrypt=yes;TrustServerCertificate=no;Connection Timeout=30;"
+        .Open
+    End With
+	
+	con.Execute "UPDATE WORK_BATTERY SET [Percent]=" & power
+	con.close
+	set con = nothing
+	
+ %>
+
+
+```
+
+## Stage 4 - Setup the relay
+
 
