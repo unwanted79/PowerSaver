@@ -40,6 +40,72 @@ Public Sub DeactivateTimer()
   
   On Error GoTo err_handler
   
+  lsuccess = KillTimer(0,TimerID)
+  If lsuccess = 0 Then
+    MsgBox "Timer failed to deactivate"
+  Else
+    TimerID = 0
+  End If
+  
+  Exit Sub
+err_handler:
+  MsgBox err.Description
+End Sub
+
+Public Sub ActivateTimer(ByVal nMinutes As Long)
+  nMinutes = nMinutes * 1000 * 60
+  If TimerID <> 0 Then Call DeactivateTimer
+  TimerID = SetTimer(0, 0, nMinutes, AddressOf GetSystemBatteryLevel)
+  
+  If TimerID = 0 Then
+    MsgBox "Timer failed to activate"
+  End iF
+End Sub
+
+Public Sub GetSystemBatteryLevel()
+  
+  getBatteryStatus
+  ActivateTimer 1
+  
+End Sub
+
+Public Sub getBatteryStatus()
+
+  Dim SPS As SYSTEM_POWER_STATUS
+  GetSystemPowerSTatus SPS
+  
+  Dim iPerc As Integer
+  Dim x As Variant
+  
+  On Error GoTo err_handler
+  
+  iPerc = SPS.BatteryLifePercent
+  
+  powered = IIF(Trim(SBS.ACLineStatus) = "1", True, False)
+  
+  If Not useOption2 Then
+    If (iPerc <= 15 And Not powered) Or (iPerc = 100 And powered) Then
+      Dim ie As InternetExplorer
+      Set ie = New InternetExplorer
+      ie.Navigate2 "http://192.168.1.128/Batlog.asp?power=" & iPerc
+      Set ie Nothing
+    End If
+  Else
+    If (iPerc <= 15 And Not powered) Or (iPerc =100 And powered) Then
+      x = Shell("C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe http://192.168.1.128/Batlog.asp?power=" & iPerc, vbNormalFocus)
+    End If
+  End If
+  
+  DoEvents
+  
+  Exit Sub
+err_handler:
+  Debug.Print Err.Description
+  useOption2 = True
+  
+  If (iPerc <= 15 And Not powered) Or (iPerc =100 And powered) Then
+    x = Shell("C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe http://192.168.1.128/Batlog.asp?power=" & iPerc, vbNormalFocus)
+  End If
 End Sub
 
 
