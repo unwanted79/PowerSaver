@@ -14,13 +14,14 @@ The driver for the USB relay is required along with some software to write the c
 ```
 'Use Reference Microsoft Internet Controls
 Option Explicit
+'Declare the API's for x64 bit (PtrSafe)
 Private Declare PtrSafe Function GetSystemPowerStatus Lib "Kernal32" (lpSystemPowerStatus as SYSTEM_POWER_STATUS) as LongPtr
 Private Declare PtrSafe Function SetTimer Lib "user32" (ByVal hwnd As LongLong, ByVal nIDEvent as LongLong, ByVal uElapse as LongLong, ByVal lpTimerfunc as LongLong) As LongLong
 Private Declare PtrSafe Function KillTimer Lib "user32"(ByVal hwnd as LongLong, ByVal nIDEvent as LongLong) as LongLong
 
 Private timerID as LongLong
-Dim powered as Boolean
-Dim useOption2 As Boolean
+Dim powered as Boolean 'flag represent the application of power
+Dim useOption2 As Boolean 'Alternate internet call should the first one fail if flagged by I.T. limits/violations
 
 Private Type SYSTEM_POWER_STATUS
   ACLineStatus as Byte
@@ -59,7 +60,7 @@ Public Sub ActivateTimer(ByVal nMinutes As Long)
 End Sub
 
 Public Sub GetSystemBatteryLevel()
-  
+  'This would be where you run the code from using F5 or you could call this sub from a startup routine
   getBatteryStatus
   ActivateTimer 1
   
@@ -75,19 +76,29 @@ Public Sub getBatteryStatus()
   
   On Error GoTo err_handler
   
+  'record the battery percentage
   iPerc = SPS.BatteryLifePercent
   
+  'Pass the mains powered status to our variable
   powered = IIF(Trim(SBS.ACLineStatus) = "1", True, False)
   
+  'If the first option hasn't failed yet then continue in the prefered way
   If Not useOption2 Then
+    'Has the powered level dropped below 15% on battery OR reached 100% when powered
     If (iPerc <= 15 And Not powered) Or (iPerc = 100 And powered) Then
       Dim ie As InternetExplorer
       Set ie = New InternetExplorer
+      'send the percent to our internal webserver. This then sends the data to a database to be monitored by another program
+      'This assumes, as was the case for me, that I.T limitations prevent you from installing any drivers or software that we would need
+      'to either interact with the Relay or the database (ODBC Driver etc)
       ie.Navigate2 "http://192.168.1.128/Batlog.asp?power=" & iPerc
       Set ie Nothing
     End If
   Else
     If (iPerc <= 15 And Not powered) Or (iPerc =100 And powered) Then
+      'I had limited attempts at using the InternetExplorer class before I.T. raises alarm bells.
+      'With that in mind the alternate solution is to use Edge but this a last resort as it's a bit clumsy having edge pop up on the screen
+      'whilst you're working, but at least it prevents the battery from going flat if you're not keeping an eye on it.
       x = Shell("C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe http://192.168.1.128/Batlog.asp?power=" & iPerc, vbNormalFocus)
     End If
   End If
