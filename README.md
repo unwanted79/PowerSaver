@@ -12,6 +12,7 @@ The driver for the USB relay is required along with some software to write the c
 
 ## Set up 1 - VBA
 ```
+'Use Reference Microsoft Internet Controls
 Option Explicit
 Private Declare PtrSafe Function GetSystemPowerStatus Lib "Kernal32" (lpSystemPowerStatus as SYSTEM_POWER_STATUS) as LongPtr
 Private Declare PtrSafe Function SetTimer Lib "user32" (ByVal hwnd As LongLong, ByVal nIDEvent as LongLong, ByVal uElapse as LongLong, ByVal lpTimerfunc as LongLong) As LongLong
