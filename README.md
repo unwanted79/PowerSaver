@@ -13,13 +13,7 @@ The driver for the USB relay is required along with some software to write the c
 
 ## <a href="SR_Stage3.md">Stage 3 - ASP (Classic to keep things simple)</a>
 
-## Stage 4 - Set up the relay
-You'll need to install the drivers for the relay. I've attached them to this project. See <a href="CH341SER.zip">CH341SER.zip</a><br>
-Right click the start menu on your home PC and select Device Manager<br>
-Expand the Ports (COM &amp; LPT) node<br>
-Right click the USB-SERIAL CH340 item and select Properties. This assumes you have connected the USB Relay to your computer.<br>
-Navigate to the Port Settings tab and check the settings are the same as illustrated below.<br> 
-<img src="Device Settings.JPG" width=800></img>
+## <a href="SR_Stage4.md">Stage 4 - Set up the relay</a>
 
 ## Stage 5 - Set up the VBA code to monitor the database and toggle the relay. In this example I am using Excel
 ```
