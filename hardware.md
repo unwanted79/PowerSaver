@@ -6,7 +6,7 @@
 | - | - | - |
 | <p align=center>Relay</p> | <p align=center>Socket & lead</p> | <p align=center>USB union</p> |
 
-### LCUS-1 type USB Relay
+### LCUS-1 type USB Relay (<a href="https://www.aliexpress.com/item/32827365539.html?_randl_currency=GBP&_randl_shipto=GB&src=google&src=google&albch=shopping&acnt=708-803-3821&slnk=&plac=&mtctp=&albbt=Google_7_shopping&albagn=888888&isSmbAutoCall=false&needSmbHouyi=false&albcp=17858099691&albag=&trgt=&crea=en32827365539&netw=x&device=c&albpg=&albpd=en32827365539&gclid=Cj0KCQjwkt6aBhDKARIsAAyeLJ3syTrC1nNmodiioPs5ZryEJpC3TcitGlJIp7_LRF68ZTJOv_cY97saAil7EALw_wcB&gclsrc=aw.ds&aff_fcid=8c1f9413262d44ceb45e970bb34a015e-1666726753049-00514-UneMJZVf&aff_fsk=UneMJZVf&aff_platform=aaf&sk=UneMJZVf&aff_trace_key=8c1f9413262d44ceb45e970bb34a015e-1666726753049-00514-UneMJZVf&terminal_id=6c7aad3474244a3497526c1ce849bae5&afSmartRedirect=y">see specs</a>)
 The USB relay has clear markings to identify where to place the power cables to form a circuit.
 - NO - Normal Open
 This is the live out if your circuit is designed to operate when the relay is switched on, This is the one we use in this project.
