@@ -9,18 +9,7 @@ The driver for the USB relay is required along with some software to write the c
 
 ## <a href="SR_Stage1.md">Stage 1 - VBA on your work/company PC</a>
 
-## Stage 2 - Set Up SQL Table
-This assumes you already have an Azure SQL database set up, if not you can download the SQL Server engine and host it locally.<br>
-Set up a simple table to store the data
-
-```
-CREATE TABLE [dbo].[WORK_BATTERY](
-	[Percent] [tinyint] NULL,
-	[Charge] [bit] NULL
-) ON [PRIMARY]
-GO
-
-```
+## <a href="SR_Stage2.md">Stage 2 - Set Up SQL Table</a>
 
 ## Stage 3 - ASP (Classic to keep things simple)
 Assuming you have IIS installed on Windows and have enabled it to process ASP pages you can add the following code to the file named Batlog.asp<br>
