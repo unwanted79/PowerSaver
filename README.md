@@ -17,6 +17,6 @@ The driver for the USB relay is required along with some software to write the c
 
 ## <a href="SR_Stage5.md">Stage 5 - Set up the VBA code to monitor the database and toggle the relay. In this example I am using Excel</a>
 
-You can adjust this code according to your circumstances. So you may be able to omit a massive chunck of the code if your laptop allows you to install drivers. You could just put the battery monitor on a timer and them call the Init_Com sub when the criteria is met and remove the whole need of a database or a web page etc.<br>
+You can adjust this code according to your circumstances. So you may be able to omit a massive chunck of the code if your laptop allows you to install drivers. You could just put the battery monitor on a timer and then call the Init_Com sub when the criteria is met and remove the whole need of a database or a web page etc.<br>
 
 Sometimes the relay sticks. It's only happened once for me. In this case just give it a flick or a tap and it should respond.
